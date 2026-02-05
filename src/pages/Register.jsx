@@ -8,11 +8,26 @@ export default function Register(){
   const [country,setCountry]=useState('+996')
   const [phone,setPhone]=useState('')
 
+  const getErrorText = (err) => {
+    if(err?.response?.data){
+      const data = err.response.data
+      if(typeof data === 'string') return data
+      if(data.error) return data.error
+      if(data.message) return data.message
+      return JSON.stringify(data)
+    }
+    return err?.message || 'Unknown error'
+  }
+
   const register = async ()=>{
-    if(!phone) return alert(t('auth.enterPhone'))
-    const res = await axios.post('/api/users/login',{ name, phone: country+phone })
-    localStorage.setItem('user', JSON.stringify(res.data))
-    window.location.href='/'
+    try {
+      if(!phone) return alert(t('auth.enterPhone'))
+      const res = await axios.post('/api/users/login',{ name, phone: country+phone })
+      localStorage.setItem('user', JSON.stringify(res.data))
+      window.location.href='/'
+    } catch (err) {
+      alert('Error: ' + getErrorText(err))
+    }
   }
 
   return (

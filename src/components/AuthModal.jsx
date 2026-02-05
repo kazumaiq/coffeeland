@@ -11,6 +11,17 @@ export default function AuthModal({ isOpen, onClose, onSuccess }){
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const getErrorText = (err) => {
+    if(err?.response?.data){
+      const data = err.response.data
+      if(typeof data === 'string') return data
+      if(data.error) return data.error
+      if(data.message) return data.message
+      return JSON.stringify(data)
+    }
+    return err?.message || 'Unknown error'
+  }
+
   const handleAuth = async (e) => {
     e.preventDefault()
     if(!phone) return alert(t('auth.enterPhone'))
@@ -25,7 +36,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }){
       onSuccess(res.data)
       onClose()
     } catch(err) {
-      alert('Error: ' + (err.response?.data || err.message))
+      alert('Error: ' + getErrorText(err))
     } finally {
       setLoading(false)
     }
