@@ -1,0 +1,12 @@
+node_modules/
+dist/
+* — копия/
+*.log
+.DS_Store
+.env
+.env.local
+.env.*.local
+server/database.db
+*.code-workspace
+.vscode/
+.vercel/
