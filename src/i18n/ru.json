@@ -13,7 +13,7 @@
     "title": "Coffee Land",
     "subtitle": "Свежий кофе каждый день",
     "viewMenu": "Посмотреть меню",
-    "orderNow": "Заказать на самовывоз"
+    "orderNow": "Заказать на вынос"
   },
   "menu": {
     "coffee": "Кофе",
@@ -28,7 +28,7 @@
     "discount": "Скидка 10%"
   },
   "cart": {
-    "orderPickup": "Заказать на самовывоз",
+    "orderPickup": "Заказать на вынос",
     "total": "Итого",
     "withDiscount": "Со скидкой",
     "enterPhone": "Введите телефон",
@@ -97,7 +97,26 @@
     "cardInactive": "Карта не активна",
     "new": "новый",
     "preparing": "готовится",
-    "completed": "выполнено"
+    "completed": "выполнен",
+    "accept": "Принять",
+    "ready": "Готово",
+    "showDetails": "Показать детали",
+    "hideDetails": "Скрыть детали",
+    "openReceipt": "Открыть чек",
+    "closeOrder": "Закрыть",
+    "changeStatus": "Изменить статус",
+    "summaryCustomer": "Клиент",
+    "summaryItems": "Позиции",
+    "pickupAt": "Заберут",
+    "pickupIn": "через",
+    "overdue": "Просрочен на",
+    "minutes": "мин",
+    "orderComposition": "Состав заказа",
+    "addons": "Добавки",
+    "noComment": "—",
+    "noData": "—",
+    "guest": "Гость",
+    "invalidLogin": "???????? ?????? ??? ?????"
   },
   "footer": {
     "tagline": "Свежий кофе, уют и забота каждый день",
@@ -112,6 +131,11 @@
     "cancel": "Отмена",
     "login": "Войти",
     "loading": "Загрузка",
-    "currency": "сом"
+    "currency": "сом",
+    "confirm": "???????????",
+    "ok": "??",
+    "error": "??????",
+    "alertTitle": "???????????",
+    "confirmTitle": "?????????????"
   }
 }

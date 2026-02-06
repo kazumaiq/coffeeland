@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Hero from '../components/Hero'
+import HeroSlider from '../components/HeroSlider'
 import MenuSection from '../components/MenuSection'
 import Cart from '../components/Cart'
 import OrderButton from '../components/OrderButton'
@@ -8,9 +8,11 @@ import LoyaltyCard from '../components/LoyaltyCard'
 import Footer from '../components/Footer'
 import { useI18n } from '../i18n'
 import menuData from '../data/menu.json'
+import { useModal } from '../components/ModalProvider'
 
 export default function Home(){
   const { t } = useI18n()
+  const { showAlert } = useModal()
   const navigate = useNavigate()
   const [cart, setCart] = useState([])
   const [user, setUser] = useState(null)
@@ -50,12 +52,12 @@ export default function Home(){
   }
 
   const handleOrderClick = () => {
-    if(cart.length === 0) alert(t('cart.enterPhone'))
+    if(cart.length === 0) showAlert(t('cart.enterPhone'))
   }
 
   return (
     <div>
-      <Hero onViewMenu={handleViewMenu} onOrderClick={handleOrderClick} />
+      <HeroSlider onViewMenu={handleViewMenu} onOrderClick={handleOrderClick} />
       
       <div className="menu-container" ref={containerRef}>
         <div className="container">

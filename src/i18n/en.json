@@ -97,7 +97,26 @@
     "cardInactive": "Card Inactive",
     "new": "new",
     "preparing": "preparing",
-    "completed": "completed"
+    "completed": "completed",
+    "accept": "Accept",
+    "ready": "Ready",
+    "showDetails": "Show details",
+    "hideDetails": "Hide details",
+    "openReceipt": "Open receipt",
+    "closeOrder": "Close",
+    "changeStatus": "Change status",
+    "summaryCustomer": "Customer",
+    "summaryItems": "Items",
+    "pickupAt": "Pickup",
+    "pickupIn": "in",
+    "overdue": "Overdue by",
+    "minutes": "min",
+    "orderComposition": "Order items",
+    "addons": "Add-ons",
+    "noComment": "—",
+    "noData": "—",
+    "guest": "Guest",
+    "invalidLogin": "Invalid credentials"
   },
   "footer": {
     "tagline": "Fresh coffee, comfort, and care every day",
@@ -112,6 +131,11 @@
     "cancel": "Cancel",
     "login": "Login",
     "loading": "Loading",
-    "currency": "som"
+    "currency": "som",
+    "confirm": "Confirm",
+    "ok": "OK",
+    "error": "Error",
+    "alertTitle": "Notice",
+    "confirmTitle": "Confirmation"
   }
 }

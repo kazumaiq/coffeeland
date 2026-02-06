@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useI18n } from '../i18n'
 import axios from 'axios'
+import { useModal } from './ModalProvider'
+import { getErrorText } from '../utils/error'
 
 export default function OrderButton({ items, user, userCard, onPlaced }){
   const { t, lang } = useI18n()
+  const { showAlert } = useModal()
   const [modal, setModal] = useState(false)
   const [loading, setLoading] = useState(false)
   const [name, setName] = useState(user?.name || '')
@@ -18,7 +21,10 @@ export default function OrderButton({ items, user, userCard, onPlaced }){
   const finalTotal = total - discountAmount
 
   const place = async () => {
-    if(!phone) return alert(t('cart.enterPhone') || 'Enter phone')
+    if(!phone) {
+      showAlert(t('cart.enterPhone') || 'Enter phone')
+      return
+    }
     setLoading(true)
     try{
       const payload = {
@@ -33,11 +39,10 @@ export default function OrderButton({ items, user, userCard, onPlaced }){
       const res = await axios.post('/api/orders', payload)
       setModal(false)
       onPlaced && onPlaced(res.data)
-      alert(t('order.success')+': '+(res.data.order?.id || '—'))
+      showAlert(`${t('order.success')}: ${res.data.order?.id || '—'}`)
     }catch(e){
       console.error(e)
-      const errorText = e.response?.data?.error || e.response?.data || e.message
-      alert('Error: '+ errorText)
+      showAlert(getErrorText(e), { title: t('common.error') })
     }finally{
       setLoading(false)
     }

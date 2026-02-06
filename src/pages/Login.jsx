@@ -1,31 +1,26 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useI18n } from '../i18n'
+import { useModal } from '../components/ModalProvider'
+import { getErrorText } from '../utils/error'
 
 export default function Login(){
   const { t } = useI18n()
+  const { showAlert } = useModal()
   const [country,setCountry]=useState('+996')
   const [phone,setPhone]=useState('')
 
-  const getErrorText = (err) => {
-    if(err?.response?.data){
-      const data = err.response.data
-      if(typeof data === 'string') return data
-      if(data.error) return data.error
-      if(data.message) return data.message
-      return JSON.stringify(data)
-    }
-    return err?.message || 'Unknown error'
-  }
-
   const login = async ()=>{
     try {
-      if(!phone) return alert(t('auth.enterPhone'))
+      if(!phone) {
+        showAlert(t('auth.enterPhone'))
+        return
+      }
       const res = await axios.post('/api/users/login',{ phone: country+phone })
       localStorage.setItem('user', JSON.stringify(res.data))
       window.location.href='/'
     } catch (err) {
-      alert('Error: ' + getErrorText(err))
+      showAlert(getErrorText(err), { title: t('common.error') })
     }
   }
 

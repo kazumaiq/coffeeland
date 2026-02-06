@@ -2,29 +2,24 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import axios from 'axios'
 import { useI18n } from '../i18n'
+import { useModal } from './ModalProvider'
+import { getErrorText } from '../utils/error'
 
 export default function AuthModal({ isOpen, onClose, onSuccess }){
   const { t } = useI18n()
+  const { showAlert } = useModal()
   const [isLogin, setIsLogin] = useState(true)
   const [name, setName] = useState('')
   const [country, setCountry] = useState('+996')
   const [phone, setPhone] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const getErrorText = (err) => {
-    if(err?.response?.data){
-      const data = err.response.data
-      if(typeof data === 'string') return data
-      if(data.error) return data.error
-      if(data.message) return data.message
-      return JSON.stringify(data)
-    }
-    return err?.message || 'Unknown error'
-  }
-
   const handleAuth = async (e) => {
     e.preventDefault()
-    if(!phone) return alert(t('auth.enterPhone'))
+    if(!phone) {
+      showAlert(t('auth.enterPhone'))
+      return
+    }
     
     setLoading(true)
     try {
@@ -36,7 +31,7 @@ export default function AuthModal({ isOpen, onClose, onSuccess }){
       onSuccess(res.data)
       onClose()
     } catch(err) {
-      alert('Error: ' + getErrorText(err))
+      showAlert(getErrorText(err), { title: t('common.error') })
     } finally {
       setLoading(false)
     }

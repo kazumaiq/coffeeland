@@ -18,7 +18,7 @@ export default function LoyaltyCard({ card, user }){
     >
       <div className="loyalty-card-content">
         <div className="loyalty-card-title">
-          ☕ {t('profile.loyaltyCard')}
+          {t('profile.loyaltyCard')}
         </div>
         <div className="loyalty-card-status">
           {isActive ? t('profile.cardActive') : t('profile.cardInactive')}

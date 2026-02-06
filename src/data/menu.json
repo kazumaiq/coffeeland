@@ -19,9 +19,9 @@
         "id": "ice",
         "title_key": "menu.iced",
         "items": [
-          {"id":"ice_latte","name_ru":"Ice Latte","name_en":"Ice Latte","sizes":[{"size":"500 мл","price":240}]},
+          {"id":"ice_latte","name_ru":"Ice Latte","name_en":"Ice Latte","image":"/icelatte.jpg","sizes":[{"size":"500 мл","price":240}]},
           {"id":"ice_cappuccino","name_ru":"Ice Cappuccino","name_en":"Ice Cappuccino","sizes":[{"size":"500 мл","price":250}]},
-          {"id":"ice_americano","name_ru":"Ice Americano","name_en":"Ice Americano","sizes":[{"size":"500 мл","price":230}]},
+          {"id":"ice_americano","name_ru":"Ice Americano","name_en":"Ice Americano","image":"/iced americano.jpg","sizes":[{"size":"500 мл","price":230}]},
           {"id":"ice_matcha_green","name_ru":"Ice Matcha (зелёная)","name_en":"Ice Matcha Green","sizes":[{"size":"500 мл","price":220}]},
           {"id":"ice_matcha_blue","name_ru":"Ice Matcha (голубая)","name_en":"Ice Matcha Blue","sizes":[{"size":"500 мл","price":220}]}
         ]
@@ -31,17 +31,17 @@
         "title_key": "menu.lemonades",
         "items": [
           {"id":"garnet_rose","name_ru":"Garnet & Rose","name_en":"Garnet & Rose","sizes":[{"size":"500 мл","price":170}]},
-          {"id":"tropical","name_ru":"Tropical","name_en":"Tropical","sizes":[{"size":"500 мл","price":190}]},
-          {"id":"watermelon_strawberry","name_ru":"Watermelon & Strawberry","name_en":"Watermelon & Strawberry","sizes":[{"size":"500 мл","price":170}]}
+          {"id":"tropical","name_ru":"Tropical","name_en":"Tropical","image":"/lemonade watermelon strawberry.jpg","sizes":[{"size":"500 мл","price":190}]},
+          {"id":"watermelon_strawberry","name_ru":"Watermelon & Strawberry","name_en":"Watermelon & Strawberry","image":"/strawberry watermelon lemonade.jpg","sizes":[{"size":"500 мл","price":170}]}
         ]
       },
       {
         "id": "milkshakes",
         "title_key": "menu.milkshakes",
         "items": [
-          {"id":"banana_shake","name_ru":"Банановый","name_en":"Banana Shake","sizes":[{"size":"500 мл","price":280}]},
-          {"id":"strawberry_shake","name_ru":"Клубничный","name_en":"Strawberry Shake","sizes":[{"size":"500 мл","price":290}]},
-          {"id":"vanilla_shake","name_ru":"Ваниль","name_en":"Vanilla Shake","sizes":[{"size":"500 мл","price":230}]}
+          {"id":"banana_shake","name_ru":"Банановый","name_en":"Banana Shake","image":"/banana milkshake.jpg","sizes":[{"size":"500 мл","price":280}]},
+          {"id":"strawberry_shake","name_ru":"Клубничный","name_en":"Strawberry Shake","image":"/strawberry milkshake.jpg","sizes":[{"size":"500 мл","price":290}]},
+          {"id":"vanilla_shake","name_ru":"Ваниль","name_en":"Vanilla Shake","image":"/vanil milkshake.jpg","sizes":[{"size":"500 мл","price":230}]}
         ]
       },
       {
@@ -57,7 +57,7 @@
           {"id":"mango_passion","name_ru":"Манго + маракуйя","name_en":"Mango + Passion","sizes":[{"size":"360 мл","price":190}]},
           {"id":"mint","name_ru":"Мятный","name_en":"Mint","sizes":[{"size":"360 мл","price":190}]},
           {"id":"karak","name_ru":"Карак чай (шафран / фисташка)","name_en":"Karak (saffron/pistachio)","sizes":[{"size":"360 мл","price":220}]},
-          {"id":"strawberry_mojito","name_ru":"Клубника мохито","name_en":"Strawberry Mojito","sizes":[{"size":"360 мл","price":190}]}
+          {"id":"strawberry_mojito","name_ru":"Клубника мохито","name_en":"Strawberry Mojito","image":"/mojito.jpg","sizes":[{"size":"360 мл","price":190}]}
         ]
       },
       {
