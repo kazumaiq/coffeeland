@@ -30,8 +30,9 @@ export default function App(){
     const root = bgRef.current
     if(!root) return
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
     const layers = Array.from(root.querySelectorAll('.coffee-layer'))
-    if(layers.length === 0 || prefersReduced) return
+    if(layers.length === 0 || prefersReduced || isMobile) return
 
     let current = window.scrollY || window.pageYOffset || 0
     let target = current

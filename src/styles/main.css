@@ -288,10 +288,18 @@ button, input, select {
     --bean-scale: 0.75;
     --bean-opacity: 0.22;
     --bean-blur: 0.8px;
+    animation: none;
   }
 
   .is-mobile-hidden {
     display: none;
+  }
+
+  .volume-select-trigger,
+  .volume-dropdown {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 10px 18px rgba(31, 59, 49, 0.16);
   }
 }
 

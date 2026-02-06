@@ -45,13 +45,7 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
   }
 
   return (
-    <motion.div 
-      className="item"
-      whileHover={{ y: -10 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-      layout
-    >
+    <div className="item">
       {hasDiscount && (
         <motion.div 
           className="discount-badge"
@@ -147,6 +141,6 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
         </motion.button>
       </div>
 
-    </motion.div>
+    </div>
   )
 }
