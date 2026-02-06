@@ -74,7 +74,7 @@ button, input, select {
   height: 70%;
   background: radial-gradient(circle at 20% 20%, rgba(79, 138, 115, 0.35), transparent 60%),
               radial-gradient(circle at 70% 30%, rgba(107, 63, 43, 0.18), transparent 55%);
-  animation: floatBlob 18s ease-in-out infinite;
+  animation: none;
   pointer-events: none;
   z-index: 0;
 }
@@ -86,7 +86,7 @@ button, input, select {
   height: 70%;
   background: radial-gradient(circle at 65% 80%, rgba(139, 91, 63, 0.2), transparent 60%),
               radial-gradient(circle at 20% 70%, rgba(79, 138, 115, 0.25), transparent 55%);
-  animation: floatBlob 22s ease-in-out infinite reverse;
+  animation: none;
   pointer-events: none;
   z-index: 0;
 }
@@ -155,7 +155,7 @@ button, input, select {
   filter: none;
   --bean-rot: 0deg;
   --bean-scale: 1;
-  animation: coffeeFloat var(--float-duration, 10s) cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  animation: none;
   will-change: transform;
   background-repeat: no-repeat;
   background-position: center;
@@ -488,7 +488,7 @@ button, input, select {
   padding: 120px 24px 80px;
   background: linear-gradient(120deg, #dfeee2 0%, #f7efe3 45%, #e6d6c3 100%);
   background-size: 200% 200%;
-  animation: gradientShift 12s ease-in-out infinite;
+  animation: none;
   overflow: hidden;
 }
 
