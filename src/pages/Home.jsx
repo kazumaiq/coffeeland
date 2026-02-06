@@ -57,7 +57,7 @@ export default function Home(){
 
   return (
     <div>
-      <HeroSlider onViewMenu={handleViewMenu} onOrderClick={handleOrderClick} />
+      <HeroSlider />
 
       <section className="hero-cta">
         <div className="container hero-cta-inner">
