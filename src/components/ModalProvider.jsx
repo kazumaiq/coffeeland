@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
 import AlertModal from './AlertModal'
 import ConfirmModal from './ConfirmModal'
 import { useI18n } from '../i18n'
@@ -11,6 +12,7 @@ export default function ModalProvider({ children }) {
   const { t } = useI18n()
   const [alertState, setAlertState] = useState(null)
   const [confirmState, setConfirmState] = useState(null)
+  const [portalEl, setPortalEl] = useState(null)
 
   const showAlert = useCallback((message, options = {}) => {
     return new Promise((resolve) => {
@@ -63,27 +65,42 @@ export default function ModalProvider({ children }) {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    let el = document.getElementById('ui-modal-root')
+    if (!el) {
+      el = document.createElement('div')
+      el.id = 'ui-modal-root'
+      document.body.appendChild(el)
+    }
+    setPortalEl(el)
+  }, [])
+
   const value = useMemo(() => ({ showAlert, showConfirm }), [showAlert, showConfirm])
 
   return (
     <ModalContext.Provider value={value}>
       {children}
-      <AlertModal
-        isOpen={Boolean(alertState)}
-        title={alertState?.title}
-        message={alertState?.message}
-        confirmLabel={alertState?.confirmLabel}
-        onClose={handleAlertClose}
-      />
-      <ConfirmModal
-        isOpen={Boolean(confirmState)}
-        title={confirmState?.title}
-        message={confirmState?.message}
-        confirmLabel={confirmState?.confirmLabel}
-        cancelLabel={confirmState?.cancelLabel}
-        onConfirm={handleConfirmAccept}
-        onClose={handleConfirmClose}
-      />
+      {portalEl && createPortal(
+        <>
+          <AlertModal
+            isOpen={Boolean(alertState)}
+            title={alertState?.title}
+            message={alertState?.message}
+            confirmLabel={alertState?.confirmLabel}
+            onClose={handleAlertClose}
+          />
+          <ConfirmModal
+            isOpen={Boolean(confirmState)}
+            title={confirmState?.title}
+            message={confirmState?.message}
+            confirmLabel={confirmState?.confirmLabel}
+            cancelLabel={confirmState?.cancelLabel}
+            onConfirm={handleConfirmAccept}
+            onClose={handleConfirmClose}
+          />
+        </>,
+        portalEl
+      )}
     </ModalContext.Provider>
   )
 }

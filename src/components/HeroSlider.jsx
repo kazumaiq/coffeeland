@@ -43,7 +43,7 @@ export default function HeroSlider({ onViewMenu, onOrderClick }){
                 <p data-swiper-parallax="-120">{slide.subtitle}</p>
                 <div className="hero-slide-actions" data-swiper-parallax="-80">
                   <button className="btn-primary" onClick={onViewMenu}>Посмотреть меню</button>
-                  <button className="btn-secondary" onClick={onOrderClick}>Заказать самовывоз</button>
+                  <button className="btn-secondary" onClick={onOrderClick}>Заказать на вынос</button>
                 </div>
               </div>
             </div>

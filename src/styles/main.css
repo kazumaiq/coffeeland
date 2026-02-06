@@ -942,6 +942,13 @@ button, input, select {
   z-index: 10;
 }
 
+.volume-dropdown.is-up {
+  top: auto;
+  bottom: calc(100% + 8px);
+  transform: translateY(8px);
+  transform-origin: bottom;
+}
+
 .volume-dropdown.is-open {
   opacity: 1;
   transform: translateY(0);
@@ -1291,6 +1298,11 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Glass Modals (Alert / Confirm) */
+#ui-modal-root {
+  position: relative;
+  z-index: 999;
+}
+
 .ui-modal-overlay {
   position: fixed;
   inset: 0;
