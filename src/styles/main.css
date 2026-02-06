@@ -13,7 +13,8 @@
   --coffee-ink: #3b2414;
   --coffee-foam: #f2e3d5;
   --coffee-overlay: rgba(22, 14, 8, 0.26);
-  --coffee-pattern-url: url('/coffee-pattern.jpg');
+  --coffee-pattern-ink: rgba(59, 36, 20, 0.16);
+  --coffee-pattern-accent: rgba(79, 138, 115, 0.12);
   --text-light: #fefaf4;
   --text-muted: #f1e7d9;
   --text-dark: #1f2a24;
@@ -108,7 +109,15 @@ button, input, select {
 .coffee-layer {
   position: absolute;
   inset: -15%;
-  background-image: var(--coffee-pattern-url);
+  --pattern-ink: var(--coffee-pattern-ink);
+  --pattern-accent: var(--coffee-pattern-accent);
+  background-image:
+    radial-gradient(ellipse at 22% 28%, var(--pattern-ink) 0 18px, transparent 19px),
+    radial-gradient(ellipse at 72% 62%, var(--pattern-ink) 0 14px, transparent 15px),
+    radial-gradient(ellipse at 42% 82%, var(--pattern-accent) 0 12px, transparent 13px),
+    radial-gradient(ellipse at 78% 18%, rgba(139, 91, 63, 0.12) 0 10px, transparent 11px),
+    linear-gradient(115deg, rgba(59, 36, 20, 0.06) 0 2px, transparent 2px 100%),
+    linear-gradient(0deg, rgba(59, 36, 20, 0.05) 0 1px, transparent 1px 100%);
   background-repeat: repeat;
   background-size: var(--layer-size, 420px) var(--layer-size, 420px);
   background-position: 0 0;
@@ -116,29 +125,25 @@ button, input, select {
   will-change: transform;
   filter: blur(var(--layer-blur, 0px));
   opacity: var(--layer-opacity, 0.25);
-  transition: transform 0.7s cubic-bezier(0.16, 0.8, 0.24, 1);
-  animation: coffeeDrift 36s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .coffee-layer--far {
   --layer-size: 520px;
   --layer-opacity: 0.18;
-  --layer-blur: 1.6px;
-  animation-duration: 46s;
+  --layer-blur: 1.1px;
 }
 
 .coffee-layer--mid {
   --layer-size: 440px;
-  --layer-opacity: 0.26;
-  --layer-blur: 0.9px;
-  animation-duration: 38s;
+  --layer-opacity: 0.24;
+  --layer-blur: 0.7px;
 }
 
 .coffee-layer--near {
   --layer-size: 360px;
-  --layer-opacity: 0.34;
-  --layer-blur: 0.6px;
-  animation-duration: 30s;
+  --layer-opacity: 0.3;
+  --layer-blur: 0.5px;
 }
 
 .coffee-bean {
@@ -264,18 +269,19 @@ button, input, select {
   }
 }
 
-@keyframes coffeeDrift {
-  0%, 100% { background-position: 0 0; }
-  50% { background-position: 60px -40px; }
-}
-
 @media (max-width: 768px) {
+  .app::before,
+  .app::after {
+    animation: none;
+    opacity: 0.6;
+  }
+
   .coffee-layer--far { --layer-size: 420px; --layer-blur: 1px; }
-  .coffee-layer--mid { --layer-size: 360px; --layer-blur: 0.7px; }
-  .coffee-layer--near { --layer-size: 300px; --layer-blur: 0.5px; }
+  .coffee-layer--mid { --layer-size: 360px; --layer-blur: 0.4px; }
+  .coffee-layer--near { --layer-size: 300px; --layer-blur: 0px; }
 
   .coffee-layer {
-    animation-duration: 52s;
+    filter: none;
   }
 
   .coffee-bean {
@@ -489,7 +495,7 @@ button, input, select {
   width: 100%;
   height: min(90vh, 900px);
   min-height: 70vh;
-  border-radius: 26px;
+  border-radius: 0;
   overflow: hidden;
   box-shadow: 0 28px 56px rgba(31, 59, 49, 0.28);
   background: #111;
@@ -618,7 +624,7 @@ button, input, select {
 
   .hero-slider .swiper {
     height: 78vh;
-    border-radius: 22px;
+    border-radius: 0;
   }
 
   .hero-slide-actions {
@@ -639,6 +645,36 @@ button, input, select {
   .hero-slider .swiper-button-next,
   .hero-slider .swiper-button-prev {
     display: none;
+  }
+}
+
+.hero-cta {
+  padding: 24px 0 10px;
+  background: linear-gradient(180deg, rgba(15, 12, 10, 0.08), rgba(15, 12, 10, 0));
+}
+
+.hero-cta-inner {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero-cta {
+    padding: 20px 0 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-cta-inner {
+    flex-direction: column;
+  }
+
+  .hero-cta-inner .btn-primary,
+  .hero-cta-inner .btn-secondary {
+    width: 100%;
   }
 }
 
@@ -879,6 +915,8 @@ button, input, select {
   position: relative;
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .volume-select-trigger {
@@ -917,10 +955,9 @@ button, input, select {
 }
 
 .volume-dropdown {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + 8px);
+  position: relative;
+  width: 100%;
+  margin-top: 0;
   background: rgba(255, 255, 255, 0.82);
   border: 1px solid rgba(31, 59, 49, 0.18);
   border-radius: 18px;
@@ -929,7 +966,7 @@ button, input, select {
   display: grid;
   gap: 6px;
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   transform-origin: top;
   max-height: 0;
   overflow: hidden;
@@ -939,20 +976,14 @@ button, input, select {
               max-height 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
   backdrop-filter: blur(16px) saturate(125%);
   -webkit-backdrop-filter: blur(16px) saturate(125%);
-  z-index: 10;
-}
-
-.volume-dropdown.is-up {
-  top: auto;
-  bottom: calc(100% + 8px);
-  transform: translateY(8px);
-  transform-origin: bottom;
+  z-index: 1;
 }
 
 .volume-dropdown.is-open {
   opacity: 1;
   transform: translateY(0);
   max-height: 260px;
+  margin-top: 8px;
   padding: 8px;
   pointer-events: auto;
 }

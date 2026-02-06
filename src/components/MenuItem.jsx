@@ -6,7 +6,6 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
   const { t, lang } = useI18n()
   const [size, setSize] = useState(item.sizes[0].size)
   const [open, setOpen] = useState(false)
-  const [dropUp, setDropUp] = useState(false)
   const dropdownRef = useRef(null)
 
 
@@ -18,20 +17,6 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
   const imageSrc = item.image || fallbackImage
   const dropdownId = `volume-${item.id}`
   const formatVolume = (sizeLabel, priceValue) => `${sizeLabel} — ${priceValue} ${currency}`
-
-  const updateDropdownDirection = () => {
-    const wrapper = dropdownRef.current
-    if(!wrapper) return
-    const trigger = wrapper.querySelector('.volume-select-trigger')
-    const dropdown = wrapper.querySelector('.volume-dropdown')
-    if(!trigger || !dropdown) return
-    const rect = trigger.getBoundingClientRect()
-    const dropdownHeight = dropdown.scrollHeight || (item.sizes.length * 44 + 24)
-    const spaceBelow = window.innerHeight - rect.bottom
-    const spaceAbove = rect.top
-    const shouldOpenUp = spaceBelow < dropdownHeight && spaceAbove > spaceBelow
-    setDropUp(shouldOpenUp)
-  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -53,19 +38,6 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
     }
   }, [])
 
-  useEffect(() => {
-    if(!open) return undefined
-    const raf = window.requestAnimationFrame(updateDropdownDirection)
-    const onResize = () => updateDropdownDirection()
-    const onScroll = () => updateDropdownDirection()
-    window.addEventListener('resize', onResize)
-    window.addEventListener('scroll', onScroll, true)
-    return () => {
-      window.cancelAnimationFrame(raf)
-      window.removeEventListener('resize', onResize)
-      window.removeEventListener('scroll', onScroll, true)
-    }
-  }, [open, item.sizes.length])
 
   const onSelect = (selected) => {
     setSize(selected)
@@ -143,7 +115,7 @@ export default function MenuItem({ item, onAdd, hasDiscount }){
           </button>
           <div
             id={dropdownId}
-            className={`volume-dropdown ${open ? 'is-open' : ''} ${dropUp ? 'is-up' : 'is-down'}`}
+            className={`volume-dropdown ${open ? 'is-open' : ''}`}
             role="listbox"
           >
             {item.sizes.map(s => {

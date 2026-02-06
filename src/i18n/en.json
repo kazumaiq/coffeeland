@@ -13,7 +13,9 @@
     "title": "Coffee Land",
     "subtitle": "Fresh coffee every day",
     "viewMenu": "View Menu",
-    "orderNow": "Order for Pickup"
+    "orderNow": "Order for Pickup",
+    "rafTitle": "Signature RAF drinks",
+    "rafSubtitle": "Popcorn ? Chocolate ? Apple Pie"
   },
   "menu": {
     "coffee": "Coffee",

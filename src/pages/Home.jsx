@@ -58,6 +58,17 @@ export default function Home(){
   return (
     <div>
       <HeroSlider onViewMenu={handleViewMenu} onOrderClick={handleOrderClick} />
+
+      <section className="hero-cta">
+        <div className="container hero-cta-inner">
+          <button className="btn-primary" onClick={handleViewMenu}>
+            {t('hero.viewMenu')}
+          </button>
+          <button className="btn-secondary" onClick={handleOrderClick}>
+            {t('hero.orderNow')}
+          </button>
+        </div>
+      </section>
       
       <div className="menu-container" ref={containerRef}>
         <div className="container">

@@ -13,7 +13,9 @@
     "title": "Coffee Land",
     "subtitle": "Свежий кофе каждый день",
     "viewMenu": "Посмотреть меню",
-    "orderNow": "Заказать на вынос"
+    "orderNow": "Заказать на вынос",
+    "rafTitle": "????????? RAF ???????",
+    "rafSubtitle": "Popcorn ? Chocolate ? Apple Pie"
   },
   "menu": {
     "coffee": "Кофе",

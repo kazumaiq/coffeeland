@@ -1,17 +1,31 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation, Parallax } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
+import { useI18n } from '../i18n'
 
 export default function HeroSlider({ onViewMenu, onOrderClick }){
+  const { t } = useI18n()
   const swiperRef = useRef(null)
+  const [parallaxEnabled, setParallaxEnabled] = useState(true)
+
+  useEffect(() => {
+    const updateParallax = () => {
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const isMobile = window.matchMedia('(max-width: 768px)').matches
+      setParallaxEnabled(!prefersReduced && !isMobile)
+    }
+    updateParallax()
+    window.addEventListener('resize', updateParallax)
+    return () => window.removeEventListener('resize', updateParallax)
+  }, [])
 
   const slides = [
-    { src: '/RAF POPCORN.jpg', title: 'јвторские RAF напитки', subtitle: 'Popcorn Х Chocolate Х Apple Pie' },
-    { src: '/RAF CHOCOLATE.jpg', title: 'јвторские RAF напитки', subtitle: 'Popcorn Х Chocolate Х Apple Pie' },
-    { src: '/RAF APPLE PIE.jpg', title: 'јвторские RAF напитки', subtitle: 'Popcorn Х Chocolate Х Apple Pie' }
+    { src: '/RAF POPCORN.jpg' },
+    { src: '/RAF CHOCOLATE.jpg' },
+    { src: '/RAF APPLE PIE.jpg' }
   ]
 
   return (
@@ -20,7 +34,7 @@ export default function HeroSlider({ onViewMenu, onOrderClick }){
         modules={[Autoplay, Pagination, Navigation, Parallax]}
         loop
         speed={850}
-        parallax
+        parallax={parallaxEnabled}
         pagination={{ clickable: true }}
         navigation
         autoplay={{ delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true }}
@@ -34,17 +48,13 @@ export default function HeroSlider({ onViewMenu, onOrderClick }){
           <SwiperSlide key={idx}>
             <div className="hero-slide">
               <div className="hero-slide-media">
-                <img src={slide.src} alt={slide.title} loading="lazy" decoding="async" />
+                <img src={slide.src} alt={t('hero.rafTitle')} loading="lazy" decoding="async" />
               </div>
               <div className="hero-slide-overlay" />
               <div className="hero-slide-glass" />
-              <div className="hero-slide-content" data-swiper-parallax="-120">
-                <h1 data-swiper-parallax="-160">{slide.title}</h1>
-                <p data-swiper-parallax="-120">{slide.subtitle}</p>
-                <div className="hero-slide-actions" data-swiper-parallax="-80">
-                  <button className="btn-primary" onClick={onViewMenu}>ѕосмотреть меню</button>
-                  <button className="btn-secondary" onClick={onOrderClick}>«аказать на вынос</button>
-                </div>
+              <div className="hero-slide-content" data-swiper-parallax={parallaxEnabled ? '-120' : undefined}>
+                <h1 data-swiper-parallax={parallaxEnabled ? '-160' : undefined}>{t('hero.rafTitle')}</h1>
+                <p data-swiper-parallax={parallaxEnabled ? '-120' : undefined}>{t('hero.rafSubtitle')}</p>
               </div>
             </div>
           </SwiperSlide>
